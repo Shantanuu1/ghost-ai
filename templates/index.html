@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ghost AI</title><link rel="stylesheet" href="/static/css/style.css"></head>
+<body><canvas id="stars" aria-hidden="true"></canvas>
+<aside id="side"><div class="brand"><img src="/static/images/ghost.svg" alt="" class="mini"><b>Ghost AI</b></div>
+<nav id="nav"><button data-view="chat" class="on">Chat</button><button data-view="code">Code</button><button data-view="story">Horror stories</button><button data-view="summarize">Summarize</button><button data-view="memory">Memories</button><button data-view="settings">Settings</button></nav>
+<button id="newChat" class="cta small">New conversation</button><div id="convs"></div></aside>
+<main>
+<section id="v-chat" class="view on"><div id="log"><div id="welcome"><img src="/static/images/ghost.svg" alt="" class="ghost">
+<h1>Something has awakened in the machine.</h1><p>An intelligent presence in the shadows. Speak, and discover what lies beyond.</p>
+<button id="awaken" class="cta">Awaken Ghost AI</button>
+<div class="cards"><button data-go="chat">Chat with Ghost</button><button data-go="code">Debug my code</button><button data-go="learn">Explain a programming concept</button><button data-go="story">Generate a horror story</button><button data-go="summarize">Summarize pasted text</button><button data-go="mem">Ask Ghost about my saved memories</button></div></div></div>
+<div id="err" class="err" hidden></div>
+<form id="chatForm"><span id="pTag" class="tag"></span><textarea id="msg" rows="2" placeholder="Speak to the ghost… (Enter sends, Shift+Enter for a new line)"></textarea><button class="cta" id="send">Send</button><button type="button" id="stop" class="ghostbtn" hidden>Stop</button></form></section>
+<section id="v-code" class="view panel"><h2>Coding assistant</h2><p class="sub">Your code is only analysed by the model, never run.</p>
+<div class="row"><select id="cLang"><option>Python</option><option>Java</option><option>C++</option><option>JavaScript</option><option>SQL</option><option>Other</option></select>
+<select id="cMode"><option value="explain">Explain code</option><option value="debug">Debug code</option><option value="error">Explain error</option><option value="optimize">Optimize</option><option value="learn">Learn a concept</option></select></div>
+<textarea id="cIn" rows="9" class="mono" placeholder="Paste code, an error message, or a concept name"></textarea><button id="cGo" class="cta">Ask Ghost</button><div id="cOut" class="out"></div></section>
+<section id="v-story" class="view panel"><h2>Horror story generator</h2><div class="row">
+<select id="sSet"><option>Abandoned hospital</option><option>Haunted mansion</option><option>Dark forest</option><option>Cursed computer</option><option>Underground laboratory</option><option value="custom">Your own setting…</option></select>
+<input id="sCustom" placeholder="Describe the setting" hidden>
+<select id="sType"><option>ghost story</option><option>psychological</option><option>found footage</option><option>folk horror</option></select>
+<select id="sInt"><option>mild</option><option selected>medium</option><option>intense</option></select>
+<select id="sLen"><option>short</option><option>medium</option><option>long</option></select></div>
+<div class="row"><button id="sGo" class="cta">Generate story</button><button id="sCopy" class="ghostbtn">Copy</button><button id="sSave" class="ghostbtn">Save as file</button><button id="sClear" class="ghostbtn">Clear</button></div><article id="sOut" class="out read"></article></section>
+<section id="v-summarize" class="view panel"><h2>Summarize text</h2><textarea id="zIn" rows="10" placeholder="Paste text to summarize"></textarea><button id="zGo" class="cta">Summarize</button><div id="zOut" class="out"></div></section>
+<section id="v-memory" class="view panel"><h2>Ghost memory</h2><p class="sub">Ghost AI only remembers what you save here. Conversations are stored separately and are never turned into memories. Don't save passwords or tokens.</p>
+<div class="row"><input id="mIn" maxlength="300" placeholder="e.g. I prefer Python and short explanations"><button id="mAdd" class="cta">Remember</button></div><ul id="mList"></ul><button id="mClear" class="ghostbtn">Forget everything</button></section>
+<section id="v-settings" class="view panel"><h2>Settings</h2>
+<label>Personality <select id="persona"><option value="friendly">Friendly Ghost</option><option value="mysterious">Mysterious Ghost</option><option value="nightmare">Nightmare Mode</option></select></label>
+<label><input type="checkbox" id="anim" checked> Floating particles and mascot animation</label>
+<p>Ollama: <b id="stat">checking…</b></p><p id="hint" class="sub"></p><p>Model: <code>{{ model }}</code></p>
+<button id="hClear" class="ghostbtn">Clear conversation history</button>
+<p class="sub">Prompts go only to the Ollama service on this computer. Memories and history live in a local SQLite file.</p></section>
+</main><script src="/static/js/app.js"></script></body></html>
